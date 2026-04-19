@@ -28,7 +28,7 @@ RXData rxData;
 const int IN1 = 2;
 const int IN2 = 3;
 const int IN3 = 4;
-const int IN4 = 5;
+const int IN4 = 6;
 
 // ===== LED + BUZZER =====
 const int FRONT_LED = A5;
@@ -37,7 +37,7 @@ const int BUZZER = A4;
 
 // ===== SERVO =====
 Servo myServo;
-const int SERVO_PIN = 6;
+const int SERVO_PIN = 5;
 
 int servoAngle = 0;
 int servoDir = 1;
@@ -208,14 +208,14 @@ void updateServo() {
   unsigned long now = millis();
 
   // speed of movement
-  if (now - lastServoUpdate > 15) {
+  if (now - lastServoUpdate > 50) {
     lastServoUpdate = now;
 
     servoAngle += servoDir;
     myServo.write(servoAngle);
 
-    if (servoAngle >= 180) {
-      servoAngle = 180;
+    if (servoAngle >= 150) {
+      servoAngle = 150;
       servoDir = -1;
       lastServoHold = now;   // start hold timer
     }
